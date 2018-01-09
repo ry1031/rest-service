@@ -17,3 +17,4 @@ public class RegisterController {
         return registerService.register(userId, location);
     }
 }
+
