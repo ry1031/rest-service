@@ -3,6 +3,9 @@ package org.demo;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.google.common.base.Predicate;
+import com.google.common.base.Predicates;
+
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -19,8 +22,8 @@ public class SwaggerConfig {
 	public Docket api() {
 		return new Docket(DocumentationType.SWAGGER_2).groupName("public-api").apiInfo(apiInfo())
 				.select()
-				.apis(RequestHandlerSelectors.any())
-				.paths(PathSelectors.any()).build();
+				.apis(Predicates.not(RequestHandlerSelectors.basePackage("org.springframework.boot")))
+				.build();
 	}
 
 	private ApiInfo apiInfo() {
