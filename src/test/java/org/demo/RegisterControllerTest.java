@@ -1,5 +1,8 @@
 package org.demo;
 
+import org.demo.controller.RegisterController;
+import org.demo.model.RegisterResult;
+import org.demo.service.RegisterService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -24,7 +27,7 @@ public class RegisterControllerTest {
 	@MockBean
 	private RegisterService registerService;
 	
-	RegisterResult mockResult = new RegisterResult("text", "success");
+	RegisterResult mockResult = new RegisterResult("Success", "INV1800001", 100.0);
 
 	@Test
 	public void retrieveDetailsForCourse() throws Exception {
@@ -38,7 +41,7 @@ public class RegisterControllerTest {
 
 		MvcResult result = mockMvc.perform(requestBuilder).andReturn();
 
-		String expected = "{type:text,content:success}";
+		String expected = "{\"status\":\"Success\",\"orderRef\":\"INV1800001\",\"fee\":100}";
 
 		JSONAssert.assertEquals(expected, result.getResponse()
 				.getContentAsString(), false);
