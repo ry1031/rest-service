@@ -22,8 +22,6 @@ public class DataFeedController {
 			@RequestParam(value = "Ref") String orderRef,
 			@RequestParam(value = "PayRef") String paymentRef) {
 		
-		System.out.print(successCode);
-		
 		dataFeedService.updateAppointment(orderRef, paymentRef, "0".equals(successCode));
 		
 		return "OK";
