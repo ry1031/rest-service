@@ -16,6 +16,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(value = RegisterController.class, secure = false)
@@ -35,13 +37,15 @@ public class RegisterControllerTest {
 				registerService.register(Mockito.anyString(),
 						Mockito.anyString())).thenReturn(mockResult);
 
-		RequestBuilder requestBuilder = MockMvcRequestBuilders.get(
-				"/register?userId=test&location=room").accept(
+		MultiValueMap<String, String> param = new LinkedMultiValueMap<>();
+		param.add("userId", "test");
+		param.add("location", "room");
+		RequestBuilder requestBuilder = MockMvcRequestBuilders.post("/register").params(param).accept(
 				MediaType.APPLICATION_JSON);
 
 		MvcResult result = mockMvc.perform(requestBuilder).andReturn();
 
-		String expected = "{status:\"Success\",orderRef:\"INV1800001\",fee:100}";
+		String expected = "{status:Success,orderRef:INV1800001,fee:100}";
 
 		JSONAssert.assertEquals(expected, result.getResponse()
 				.getContentAsString(), false);
