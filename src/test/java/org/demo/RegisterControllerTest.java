@@ -41,7 +41,7 @@ public class RegisterControllerTest {
 
 		MvcResult result = mockMvc.perform(requestBuilder).andReturn();
 
-		String expected = "{\"status\":\"Success\",\"orderRef\":\"INV1800001\",\"fee\":100}";
+		String expected = "{status:\"Success\",orderRef:\"INV1800001\",fee:100}";
 
 		JSONAssert.assertEquals(expected, result.getResponse()
 				.getContentAsString(), false);
