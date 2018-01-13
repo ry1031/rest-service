@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Initialize') {
       steps {
-        echo 'testing'
+        bat 'echo %JAVA_HOME%; echo %PATH%'
       }
     }
     stage('Build') {
