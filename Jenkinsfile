@@ -20,10 +20,6 @@ pipeline {
     stage('Report') {
       steps {
         junit 'target/surefire-reports/**/*.xml'
-      }
-    }
-    stage('Archive') {
-      steps {
         archiveArtifacts 'target/*.jar,target/*.hpi'
       }
     }
