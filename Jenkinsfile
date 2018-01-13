@@ -1,11 +1,5 @@
 pipeline {
-  agent {
-    docker {
-      image 'maven:3.5.2-jdk-8'
-      args '-v C:\\Users\\Moon\\.m2'
-    }
-    
-  }
+  agent any
   stages {
     stage('Initialize') {
       steps {
