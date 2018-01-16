@@ -26,7 +26,7 @@ public class Appointment {
 	
 	private String paymentRef;
 
-	@JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+	@JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
 	private LocalDateTime dateTime;
 
 	private String status;
