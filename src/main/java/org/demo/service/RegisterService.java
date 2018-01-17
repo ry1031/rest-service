@@ -33,6 +33,6 @@ public class RegisterService {
 	}
 	
 	private String generateOrderRef() {
-		return "INV18" + String.format("%05d", orderNo.intValue());
+		return "INV18" + String.format("%05d", orderNo.getAndIncrement());
 	}
 }
